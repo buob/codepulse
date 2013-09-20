@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @pulse.user
+%p
+  %b Url:
+  = @pulse.url
+
+= link_to 'Edit', edit_pulse_path(@pulse)
+\|
+= link_to 'Back', pulses_path
