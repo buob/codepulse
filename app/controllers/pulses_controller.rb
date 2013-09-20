@@ -1,4 +1,6 @@
 class PulsesController < ApplicationController
+  skip_before_filter :authenticate_user!, only: :show
+  
   before_action :set_pulse, only: [:show, :edit, :update, :destroy]
 
   # GET /pulses
