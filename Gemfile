@@ -17,7 +17,7 @@ gem 'devise'
 group :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
 
