@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/buob/codepulse.png)](https://travis-ci.org/buob/codepulse)
-
-# CodePulse
+# CodePulse [![Build Status](https://travis-ci.org/buob/codepulse.png)](https://travis-ci.org/buob/codepulse)
 
 An application built to make your development activity fabulous.
 
