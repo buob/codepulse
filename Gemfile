@@ -14,6 +14,12 @@ gem 'jbuilder', '~> 1.2'
 gem 'puma'
 gem 'devise'
 
+group :test do
+  gem 'rspec-rails'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+end
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
