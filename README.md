@@ -6,6 +6,6 @@ An application built to make your development activity fabulous.
 
 * `bundle install`
 
-* `rake db:setup`
+* `rake db:setup` ([postgresapp](http://postgresapp.com) for local pg development)
 
 * `puma`
