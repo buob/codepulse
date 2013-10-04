@@ -4,5 +4,11 @@ Codepulse::Application.routes.draw do
   get "marketing/index"
   devise_for :users
 
-  root 'pulses#index'
+  authenticated :user do
+    root to: 'pulses#index', as: :authenticated_root
+  end
+
+  unauthenticated do
+    root to: 'marketing#index'
+  end
 end
