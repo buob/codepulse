@@ -5,13 +5,8 @@ Feature: Signup and Signin
 
   Scenario: User Signs up
     When I sign up
-    Then I should have a pulse
-    And I should be on the edit page
-
-  Scenario: User Signs in
-    Given I have an account
-    When I sign in
-    Then I should be on the edit page
+    Then I should be let in
+    And I should be able to edit my new pulse
 
   Scenario: Visitor Tries to Hack
     Given I'm a visitor

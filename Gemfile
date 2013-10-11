@@ -13,6 +13,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'puma'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-github'
 
 group :test do
   gem 'factory_girl_rails'
