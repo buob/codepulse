@@ -1,21 +1,14 @@
 When(/^I sign up$/) do
-  visit new_user_registration_path
-  fill_in 'user_email', with: 'frodo@bagend.me'
-  fill_in 'user_password', with: 'the0ner1ng'
-  fill_in 'user_password_confirmation', with: 'the0ner1ng'
-  click_on 'Sign up'
+  visit root_url
+  click_on 'Sign in with GitHub'
 end
 
-Then(/^I should have a pulse$/) do
-  expect(page).to have_content 'Welcome'
+Then(/^I should be let in$/) do
+  expect(page).to have_content 'Successfully authenticated from GitHub account'
 end
 
-Then(/^I should be on the edit page$/) do
+Then(/^I should be able to edit my new pulse$/) do
   expect(page).to have_content 'Editing pulse'
-end
-
-Given(/^I have an account$/) do
-  @current_user = FactoryGirl.create :user
 end
 
 When(/^I sign in$/) do
