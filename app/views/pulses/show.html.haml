@@ -1,12 +1,84 @@
 %p#notice= notice
+- if current_user === @pulse.user
+  = link_to '', edit_pulse_path(@pulse), class: 'icon-pencil edit'
 
-%p
-  %b User:
-  = @pulse.user
-%p
-  %b Url:
-  = @pulse.url
+%header
+  .socials
+    .inner
+      %ul
+        %li.github
+          = link_to '', 'http://github.com/buob', class: 'icon-github'
+        %li.facebook
+          = link_to '', 'http://facebook.com/jakebuob', class: 'icon-facebook'
+        %li.dribbble
+          = link_to '', 'http://dribbble.com/jakebuob', class: 'icon-dribbble'
+        %li.twitter
+          = link_to '', 'http://twitter.com/jakebuob', class: 'icon-twitter'
+  .title
+    %h1.name jakebuob
+    %h2.tagline engineer --with class
 
-= link_to 'Edit', edit_pulse_path(@pulse)
-\|
-= link_to 'Back', pulses_path
+.pulse
+  = image_tag 'wave.png'
+
+.band.job
+  .title Developer at MojoTech
+
+.content
+  .work
+    .project
+      .background{style: 'background-image: url(http://garden.jpg.to/l+r+photo)'}
+      .overlay{style: 'background-color: #701516;'}
+      .shadow
+      .graph.graph-1
+      %h1.title Garden Gate Fabrics
+      %ul.languages
+        %li Ruby
+        %li Javascript
+        %li HTML
+      .activity
+        %ul
+          %li
+            lines removed this week:
+            %span 381
+          %li
+            lines added this week:
+            %span 4,189
+          %li
+            total lines removed:
+            %span 793,921
+          %li
+            total lines added:
+            %span 1,823,843
+        .total-commits
+          .number 120
+          .sub commits
+
+    .project
+      .background{style: 'background-image: url(http://love.jpg.to/l+r+photo)'}
+      .overlay{style: 'background-color: #244776;'}
+      .shadow
+      .graph.graph-2
+      %h1.title Love Sends
+      %ul.languages
+        %li Javascript
+        %li CSS
+      .activity
+        %ul
+          %li
+            lines removed this week:
+            %span 271
+          %li
+            lines added this week:
+            %span 402
+          %li
+            total lines removed:
+            %span 4,921
+          %li
+            total lines added:
+            %span 964,278
+        .total-commits
+          .number 75
+          .sub commits
+
+.band.fin fin
