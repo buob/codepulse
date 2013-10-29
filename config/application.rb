@@ -19,5 +19,13 @@ module Codepulse
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # I prefer using SASS over SCSS... because that's what real men use apparently
+    if Rails.configuration.respond_to?(:sass)
+      Rails.configuration.sass.tap do |config|
+        # Prefer SASS, 'cause that's what real men use :)
+        config.preferred_syntax = :sass
+      end
+    end
   end
 end
