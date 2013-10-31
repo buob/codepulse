@@ -1,0 +1,7 @@
+@mixin background-image-retina($image, $extension: 'png')
+  background-image: image-url($image + '.' + $extension)
+
+  @media only screen and (-webkit-min-device-pixel-ratio: 2)
+    @include background-size(image-width($image + '.' + $extension) auto)
+    background-image: image-url($image + '@2x.' + $extension)
+
