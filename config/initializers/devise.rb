@@ -232,9 +232,9 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
 
-  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development? 
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 
-  config.omniauth :github, '7910ad4f6223a4feeb80', 'ee5257a8d7fe617ad63f58f3b39066c35ec88cd6', :scope => 'user,repo,notifications,gist'
+  config.omniauth :github, ENV["GITHUB_CLIENT_ID"], ENV["GITHUB_CLIENT_SECRET"], :scope => 'user,repo,notifications,gist'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
