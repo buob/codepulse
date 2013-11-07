@@ -3,17 +3,13 @@
   = link_to '', edit_pulse_path(@pulse), class: 'icon-pencil edit'
 
 %header
-  .socials
-    .inner
-      %ul
-        %li.github
-          = link_to '', 'http://github.com/buob', class: 'icon-github'
-        %li.facebook
-          = link_to '', 'http://facebook.com/jakebuob', class: 'icon-facebook'
-        %li.dribbble
-          = link_to '', 'http://dribbble.com/jakebuob', class: 'icon-dribbble'
-        %li.twitter
-          = link_to '', 'http://twitter.com/jakebuob', class: 'icon-twitter'
+  - if @pulse.social_accounts.size
+    .socials
+      .inner
+        %ul
+          - @pulse.social_accounts.each do |social_account|
+            %li{class: social_account.name}
+              = link_to '', social_account.url + social_account.handle, class: "icon-#{social_account.name}"
   .title
     %h1.name jakebuob
     %h2.tagline= @pulse.tagline
