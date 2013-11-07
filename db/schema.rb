@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131107032302) do
+ActiveRecord::Schema.define(version: 20131107032717) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20131107032302) do
   end
 
   add_index "pulses", ["user_id"], name: "index_pulses_on_user_id", using: :btree
+
+  create_table "social_profiles", force: true do |t|
+    t.string   "url"
+    t.string   "name"
+    t.string   "color"
+    t.integer  "display_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

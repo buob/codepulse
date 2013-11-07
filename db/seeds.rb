@@ -1,7 +1,15 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+social_profiles = [
+  {name: 'github', url: 'http://github.com/', color: '#333', display_order: 1},
+  {name: 'facebook', url: 'http://facebook.com/', color: '#43609c', display_order: 2},
+  {name: 'dribbble', url: 'http://dribbble.com/', color: '#cb376e', display_order: 3},
+  {name: 'twitter', url: 'http://twitter.com/', color: '#00aeed', display_order: 4},
+]
+
+social_profiles.each do |p|
+  profile = SocialProfile.find_or_create_by(name: p[:name])
+  profile.update_attributes(
+    url: p[:url],
+    color: p[:color],
+    display_order: p[:display_order]
+  )
+end
