@@ -28,6 +28,6 @@ class PulsesController < ApplicationController
     end
 
     def pulse_params
-      params.require(:pulse).permit(:url)
+      params.require(:pulse).permit(:url, :tagline)
     end
 end
