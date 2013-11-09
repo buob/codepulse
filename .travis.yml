@@ -1,3 +1,13 @@
 language: ruby
 rvm:
   - 2.0.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: DL8C2lSMNAYP+7WMPS5Dijov/aCMEkswLcu8H10Pgu2ER3eqbzxhIA7d309lEcVQSsisYPuB9usMeKhCdauukVW2KktzZb+1+1xk6TJxLuxzjSx7IuHSSKbEJs3GjSAG9Px9cxl+DE9VppHr6AF1nBT9Tb9x1omWIVK9yziKNrg=
+  app: code-pulse
+  on:
+    branch: master
+    repo: buob/codepulse
+  run:
+    - "rake db:migrate"
