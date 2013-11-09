@@ -21,14 +21,12 @@ end
 Given(/^I'm a visitor$/) do
 end
 
-Then(/^I should not be able to edit a page$/) do
-  pulse = FactoryGirl.create :pulse
-  visit edit_pulse_path pulse
+Then(/^I should not be able to edit the pulse$/) do
+  visit edit_pulse_path @pulse
   expect(page).to have_content 'Sign in'
 end
 
-Then(/^I should be able to view a pulse$/) do
-  pulse = FactoryGirl.create :pulse
-  visit pulse_path pulse
+Then(/^I should be able to view the pulse$/) do
+  visit pulse_path @pulse
   expect(page).to_not have_content 'Sign in'
 end
