@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:github]
   has_one :pulse, dependent: :destroy
+  has_many :social_accounts
+  has_many :social_profiles, through: :social_accounts
   after_create :create_pulse
 
   def self.find_for_github_oauth(auth, signed_in_resource=nil)

@@ -10,8 +10,10 @@ Feature: Signup and Signin
 
   Scenario: Visitor Tries to Hack
     Given I'm a visitor
-    Then I should not be able to edit a page
+    And a user with a pulse exists
+    Then I should not be able to edit the pulse
 
   Scenario: Visitor Views Pulse
     Given I'm a visitor
-    Then I should be able to view a pulse
+    And a user with a pulse exists
+    Then I should be able to view the pulse

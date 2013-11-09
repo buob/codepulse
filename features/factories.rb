@@ -8,5 +8,6 @@ FactoryGirl.define do
 
   factory :pulse do
     sequence(:url) {|n| "old_toby_#{n}"}
+    tagline 'best-brew --in shire'
   end
 end
