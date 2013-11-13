@@ -16,6 +16,7 @@ gem 'puma'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'github_api'
 
 group :test do
   gem 'factory_girl_rails'
