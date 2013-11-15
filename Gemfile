@@ -18,6 +18,7 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'github_api'
 gem 'pry'
+gem 'rspec-rails'
 
 group :test do
   gem 'factory_girl_rails'
