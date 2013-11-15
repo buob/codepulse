@@ -22,59 +22,35 @@
 
 .content
   .work
-    .project
-      .background{style: 'background-image: url(http://garden.jpg.to/l+r+photo)'}
-      .overlay{style: 'background-color: #701516;'}
-      .shadow
-      .graph.graph-1
-      %h1.title Garden Gate Fabrics
-      %ul.languages
-        %li Ruby
-        %li Javascript
-        %li HTML
-      .activity
-        %ul
-          %li
-            lines removed this week:
-            %span 381
-          %li
-            lines added this week:
-            %span 4,189
-          %li
-            total lines removed:
-            %span 793,921
-          %li
-            total lines added:
-            %span 1,823,843
-        .total-commits
-          .number 120
-          .sub commits
-
-    .project
-      .background{style: 'background-image: url(http://love.jpg.to/l+r+photo)'}
-      .overlay{style: 'background-color: #244776;'}
-      .shadow
-      .graph.graph-2
-      %h1.title Love Sends
-      %ul.languages
-        %li Javascript
-        %li CSS
-      .activity
-        %ul
-          %li
-            lines removed this week:
-            %span 271
-          %li
-            lines added this week:
-            %span 402
-          %li
-            total lines removed:
-            %span 4,921
-          %li
-            total lines added:
-            %span 964,278
-        .total-commits
-          .number 75
-          .sub commits
+    - @pulse.user.repos.each do |repo|
+      .project
+        .background{style: "background-image: url(http://#{repo.name}.jpg.to/l+r+photo)"}
+        .overlay{style: "background-color: #{repo.primary_language_color || '#000'};"}
+        .shadow
+        .graph= image_tag 'graph1.png'
+        - unless repo.private
+          %h1.title= repo.name.capitalize
+        %ul.languages
+          - repo.languages.each do |language|
+            %li= language
+        .activity
+          %ul.additions-deletions
+            - if repo.this_week_deletions > 0
+              %li
+                lines removed this week:
+                %span= repo.this_week_deletions
+            - if repo.this_week_additions > 0
+              %li
+                lines added this week:
+                %span= repo.this_week_additions
+            %li
+              total lines removed:
+              %span= repo.total_deletions
+            %li
+              total lines added:
+              %span= repo.total_additions
+          .total-commits
+            .number= repo.total_commits
+            .sub= "commit".pluralize(repo.total_commits)
 
 .band.fin fin

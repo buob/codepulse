@@ -14,3 +14,9 @@ Feature: Have a Pulse
     Given the pulse has social profiles connected
     When I'm viewing that pulse
     Then I should see the social profiles
+
+  Scenario: Seeing my repos
+    Given they have some github repos
+    When I'm viewing that pulse
+    Then I should see the repos listed
+    And they should have commit activity

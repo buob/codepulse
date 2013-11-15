@@ -3,6 +3,7 @@ FactoryGirl.define do
     sequence(:email) {|n| "hobbit_#{n}@shirenet.me"}
     password 'gaffers-br3w'
     password_confirmation 'gaffers-br3w'
+    github_user 'buob'
     pulse
   end
 
