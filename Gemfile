@@ -26,6 +26,11 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
+
 group :production do
   gem 'rails_12factor'
 end
