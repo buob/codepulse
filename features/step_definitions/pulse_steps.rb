@@ -25,3 +25,16 @@ end
 Then(/^I should see the social profiles$/) do
   expect(page).to have_selector '.socials li', count: 4
 end
+
+Given(/^they have some github repos$/) do
+end
+
+Then(/^I should see the repos listed$/) do
+  expect(page).to have_selector '.project', count: 2
+end
+
+Then(/^they should have commit activity$/) do
+  # in our stub, the project had 49 commits
+  page.find('.project:first-child').click
+  expect(page).to have_content '49', visible: false
+end

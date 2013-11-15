@@ -16,12 +16,21 @@ gem 'puma'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'github_api'
+gem 'pry'
+gem 'rspec-rails'
 
 group :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  gem 'selenium-webdriver'
+end
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :production do
