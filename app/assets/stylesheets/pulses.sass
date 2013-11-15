@@ -1,7 +1,7 @@
 *
   position: relative
   +box-sizing(border-box)
-  +transition(all 300ms ease-in-out)
+  +transition(all 250ms ease-in-out)
 
 %shadow-after
   &:after
@@ -99,7 +99,6 @@ header
   .dribbble
     background-color: #cb376e
 
-
 .name, .tagline
   display: inline
 
@@ -147,9 +146,10 @@ header
   overflow: hidden
   color: white
   text-align: right
-  &:first-child
+  margin-bottom: 45px
+  &:nth-child(odd)
     float: left
-  &:last-child
+  &:nth-child(even)
     float: right
   .overlay, .shadow
     position: absolute
@@ -169,62 +169,72 @@ header
     +opacity(0.8)
   .shadow
     +box-shadow(inset 0 0 0 10px rgba(255, 255, 255, 0.2))
-  .graph-1
-    background: image-url('graph1.png') left bottom no-repeat
-  .graph-2
-    background: image-url('graph2.png') left bottom no-repeat
   .graph
     position: absolute
     top: 18px
     right: 18px
     bottom: 18px
     left: 18px
-    +background-size(contain)
-    +transition(opacity 450ms ease-in-out)
+    overflow: hidden
+    img
+      position: absolute
+      bottom: -1%
+      left: -1%
+      right: -1%
+      width: 102%
+      +transform(scale(1))
   .title
     font:
       size: 26px
       weight: 500
+  .title + .languages
+    margin-top: 7px
   .languages
     font-size: 17px
-    margin-top: 3px
     li
       display: inline
       &:after
         content: ' •'
       &:last-child:after
         content: ''
-  .activity
-    position: static
-    ul
-      font-size: 15px
-      line-height: 1.5em
-      margin-top: 37px
-      +transform(translate3d(-150%, 0, 0))
-      +transition(transform 350ms ease-in-out)
-      span
-        font-size: 1.7em
-        padding-left: 5px
-        top: 2px
-  .total-commits
-    position: absolute
-    padding: 16px
-    text-align: center
-    left: 30px
-    bottom: 30px
-    width: 110px
-    height: 110px
-    border: 5px solid white
-    +transform(translate3d(375%, 0, 0))
-    +transition(transform 350ms ease-in-out)
-    +border-radius(200px)
-    .number
-      font-size: 44px
   &:hover
     .total-commits, .activity ul
       +transform(translate3d(0, 0, 0))
-    .graph
+      +opacity(1)
+    .graph img
       +opacity(0.35)
+      +transform(scale(0.98))
+
+.activity
+  position: static
+
+.additions-deletions, .total-commits
+  position: absolute
+  +opacity(0)
+
+.additions-deletions
+  bottom: 36px
+  right: 30px
+  font-size: 15px
+  line-height: 1.5em
+  +transform(translate3d(-25%, 0, 0))
+  span
+    font-size: 1.7em
+    padding-left: 5px
+    top: 2px
+
+.total-commits
+  padding: 16px
+  text-align: center
+  left: 30px
+  bottom: 30px
+  width: 110px
+  height: 110px
+  border: 5px solid white
+  +transform(translate3d(35%, 0, 0))
+  +border-radius(200px)
+  .number
+    font-size: 44px
 
 .fin
   margin: 40px 0 0 0
