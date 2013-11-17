@@ -22,7 +22,6 @@ class Repo
       last_week = (Time.now - 14.days).to_i
       now = (Time.now - 7.days).to_i
       stats.weeks.each do |week|
-        # binding.pry
         @total_additions += week.a
         @total_deletions += week.d
         if last_week < week.w and week.w < now
