@@ -15,7 +15,7 @@ Feature: Have a Pulse
     When I'm viewing that pulse
     Then I should see the social profiles
 
-  Scenario: Seeing my repos
+  Scenario: Seeing repos
     Given they have some github repos
     When I'm viewing that pulse
     Then I should see the repos listed
