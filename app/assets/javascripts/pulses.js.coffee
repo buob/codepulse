@@ -92,13 +92,14 @@ $ ->
 
     interval = 15
     middle = 104
+    explosionWeight = 4
     i = interval
     negative = true
 
     path = 'M0,' + middle + ' L'
     for week in activity
       for day in week.days
-        spike = middle + (if negative then -1 * day else day)*3
+        spike = middle + (if negative then -1 * day else day) * explosionWeight
         path += i + ',' + spike + ' '
 
         i += interval
