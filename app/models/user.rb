@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def github
-    @_github ||= Github.new oauth_token: auth_token, user: github_user
+    @_github ||= Github.new oauth_token: auth_token
   end
 
   def repos
