@@ -37,7 +37,7 @@ class Repo
   private
 
   def language_colors
-    @language_colors ||= {
+    {
       "Arduino" => "#bd79d1",
       "Java" => "#b07219",
       "VHDL" => "#543978",
