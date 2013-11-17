@@ -31,6 +31,32 @@ class User < ActiveRecord::Base
     @_github ||= Github.new oauth_token: auth_token
   end
 
+  def activity
+    activity = {}
+    earliest = Date.today
+    repos.each do |repo|
+      github.repos.commits.all(user: repo.owner, repo: repo.name, author: github_user, per_page: 100).each do |c|
+        date = Date.parse(c.commit.author.date)
+        earliest = date < earliest ? date : earliest
+        if activity[date].nil?
+          activity[date] = 1
+        else
+          activity[date] = activity[date] + 1
+        end
+      end
+    end
+    date = earliest
+    while date < Date.today do
+      if activity[date].nil?
+        activity[date] = 0
+      end
+      date = date + 1.days
+    end
+    activity_array = []
+    activity.each {|k,v| activity_array << {date: k, commits: v}}
+    activity_array.sort { |x, y| y[:date] <=> x[:date] }
+  end
+
   def repos
     if @repos.nil?
       @repos = []

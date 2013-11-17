@@ -1,109 +1,22 @@
-$ ->
-  if $('.pulse').length
-    activity = [
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1383436800
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1382832000
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1383436800
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1384041600
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1384646400
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1385251200
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1385856000
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1383436800
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1382832000
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1383436800
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1384041600
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1384646400
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1385251200
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1385856000
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1383436800
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1382832000
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1383436800
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1384041600
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1384646400
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1385251200
-    ,
-      'days': [ 0, 3, 26, 20, 39, 1, 0 ]
-      'total': 89
-      'week': 1385856000
-    ,
-      'days': [ 0, 5, 30, 15, 25, 3, 0 ]
-      'total': 90
-      'week': 1386460800
-    ]
-
+window.Pulse =
+  draw: (activity) ->
     interval = 15
     middle = 104
     explosionWeight = 4
-    i = interval
     negative = true
+    viewWidth = 2000
+    i = interval
 
-    path = 'M0,' + middle + ' L'
-    for week in activity
-      for day in week.days
-        spike = middle + (if negative then -1 * day else day) * explosionWeight
-        path += i + ',' + spike + ' '
+    path = 'M' + viewWidth + ',' + middle + ' L'
+    for day in activity
+      commits = day.commits
+      spike = middle + (if negative then -1 * commits else commits) * explosionWeight
+      path += (viewWidth - i) + ',' + spike + ' '
 
-        i += interval
-        negative = !negative
+      i += interval
+      negative = !negative if commits > 0
+
+    path += (viewWidth - i) + ',' + middle + ' 0,' + middle
 
     pulse = document.createElementNS "http://www.w3.org/2000/svg", "path"
     $(pulse).attr
@@ -119,7 +32,7 @@ $ ->
       'transition': 'none'
       '-webkit-transition': 'none'
       'stroke-dasharray': length + ' ' + length
-      'stroke-dashoffset': length
+      'stroke-dashoffset': '-' + length + 'px'
 
     $('.pulse svg').append pulse
 

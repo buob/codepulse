@@ -54,3 +54,7 @@
             .sub= "commit".pluralize(repo.total_commits)
 
 .band.fin fin
+
+- content_for :javascript do
+  - javascript_tag do
+    $(function () { Pulse.draw(#{raw @pulse.user.activity.to_json()}); });

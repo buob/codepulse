@@ -15,6 +15,11 @@ Feature: Have a Pulse
     When I'm viewing that pulse
     Then I should see the social profiles
 
+  @javascript
+  Scenario: Seeing pulse with commit activity
+    When I'm viewing that pulse
+    Then I should see a pulse with blips for commit activity
+
   Scenario: Seeing repos
     Given they have some github repos
     When I'm viewing that pulse

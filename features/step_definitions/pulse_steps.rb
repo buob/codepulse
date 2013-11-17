@@ -33,6 +33,22 @@ Then(/^I should see the repos listed$/) do
   expect(page).to have_selector '.project', count: 2
 end
 
+Then(/^I should see a pulse with blips for commit activity$/) do
+  # in our stub, the commits are 1, 2, 1 from last to first
+  # based on viewWidth of 2000, interval of 15, and middle of 104 (pulses.js.coffee)
+  path = page.find('.pulse path')['d']
+
+  expect(path).to have_content 'M2000,104'
+
+  expect(path).to have_content '1985,'
+  expect(path).to have_content '1970,'
+  expect(path).to have_content '1955,'
+
+  expect(path).not_to have_content '1985,104'
+  expect(path).not_to have_content '1970,104'
+  expect(path).not_to have_content '1955,104'
+end
+
 Then(/^they should have commit activity$/) do
   # in our stub, the project had 49 commits
   page.find('.project:first-child').click

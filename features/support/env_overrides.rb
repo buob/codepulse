@@ -56,4 +56,29 @@ Before do
       )
     ]
   )
+
+  User.any_instance.stub_chain(:github, :repos, :commits, :all).and_return(
+    [
+      OpenStruct.new(
+        commit: OpenStruct.new(
+          author: OpenStruct.new(date: Time.now.utc.iso8601.to_s),
+        ),
+      ),
+      OpenStruct.new(
+        commit: OpenStruct.new(
+          author: OpenStruct.new(date: (Time.now - 1.day).utc.iso8601.to_s),
+        ),
+      ),
+      OpenStruct.new(
+        commit: OpenStruct.new(
+          author: OpenStruct.new(date: (Time.now - 1.day).utc.iso8601.to_s),
+        ),
+      ),
+      OpenStruct.new(
+        commit: OpenStruct.new(
+          author: OpenStruct.new(date: (Time.now - 2.days).utc.iso8601.to_s),
+        ),
+      ),
+    ]
+  )
 end

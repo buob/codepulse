@@ -8,7 +8,8 @@
     .notices= render 'layouts/flash_messages'
     = yield
 
-    = javascript_include_tag "application", "data-turbolinks-track" => true
     %script{src: "//use.typekit.net/uxo7ptt.js", type: "text/javascript"}
+    = javascript_include_tag "application", "data-turbolinks-track" => true
     :javascript
       try{Typekit.load();}catch(e){}
+    = yield :javascript
