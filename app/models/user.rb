@@ -32,13 +32,17 @@ class User < ActiveRecord::Base
   end
 
   def repos
-    @repos = []
-    github.repos.list.each do |repo|
-      repo = github.repos.get(repo.owner.login, repo.name).source if repo.fork
-      repo = Repo.new(self, repo)
-      @repos << repo if repo.displayable
+    if @repos.nil?
+      @repos = []
+      github.repos.list.each do |repo|
+        repo = github.repos.get(repo.owner.login, repo.name).source if repo.fork
+        repo = Repo.new(self, repo)
+        @repos << repo if repo.displayable
+      end
+      @repos.sort! { |x,y| y.total_commits <=> x.total_commits }
+    else
+      @repos
     end
-    @repos.sort { |x,y| y.total_commits <=> x.total_commits }
   end
 
   def self.new_with_session(params, session)
