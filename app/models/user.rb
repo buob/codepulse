@@ -28,17 +28,47 @@ class User < ActiveRecord::Base
   end
 
   def github
-    @_github ||= Github.new oauth_token: auth_token, user: github_user
+    @_github ||= Github.new oauth_token: auth_token
+  end
+
+  def activity
+    activity = {}
+    earliest = Date.today
+    repos.each do |repo|
+      github.repos.commits.all(user: repo.owner, repo: repo.name, author: github_user, per_page: 100).each do |c|
+        date = Date.parse(c.commit.author.date)
+        earliest = date < earliest ? date : earliest
+        if activity[date].nil?
+          activity[date] = 1
+        else
+          activity[date] = activity[date] + 1
+        end
+      end
+    end
+    date = earliest
+    while date < Date.today do
+      if activity[date].nil?
+        activity[date] = 0
+      end
+      date = date + 1.days
+    end
+    activity_array = []
+    activity.each {|k,v| activity_array << {date: k, commits: v}}
+    activity_array.sort { |x, y| y[:date] <=> x[:date] }
   end
 
   def repos
-    @repos = []
-    github.repos.list.each do |repo|
-      repo = github.repos.get(repo.owner.login, repo.name).source if repo.fork
-      repo = Repo.new(self, repo)
-      @repos << repo if repo.displayable
+    if @repos.nil?
+      @repos = []
+      github.repos.list.each do |repo|
+        repo = github.repos.get(repo.owner.login, repo.name).source if repo.fork
+        repo = Repo.new(self, repo)
+        @repos << repo if repo.displayable
+      end
+      @repos.sort! { |x,y| y.total_commits <=> x.total_commits }
+    else
+      @repos
     end
-    @repos.sort { |x,y| y.total_commits <=> x.total_commits }
   end
 
   def self.new_with_session(params, session)

@@ -1,9 +1,9 @@
 class Repo
-  attr_accessor :name, :private, :languages, :primary_language_color, :stats, :displayable, :total_commits, :total_additions, :total_deletions, :this_week_additions, :this_week_deletions
+  attr_accessor :name, :private, :languages, :primary_language_color, :owner, :displayable, :total_commits, :total_additions, :total_deletions, :this_week_additions, :this_week_deletions
   def initialize(user, repo)
     @name = repo.name
     @private = repo.private
-    owner = repo.owner.login
+    @owner = repo.owner.login
 
     repo = repo.name
 
@@ -22,7 +22,6 @@ class Repo
       last_week = (Time.now - 14.days).to_i
       now = (Time.now - 7.days).to_i
       stats.weeks.each do |week|
-        # binding.pry
         @total_additions += week.a
         @total_deletions += week.d
         if last_week < week.w and week.w < now
@@ -38,7 +37,7 @@ class Repo
   private
 
   def language_colors
-    @language_colors ||= {
+    {
       "Arduino" => "#bd79d1",
       "Java" => "#b07219",
       "VHDL" => "#543978",
