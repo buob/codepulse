@@ -121,6 +121,7 @@ header
   height: 208px
   z-index: 500
   text-align: center
+  cursor: default
   background:
     position: center
     repeat: repeat-x
@@ -128,6 +129,11 @@ header
   svg
     float: right
     margin-right: 20px
+  circle, rect, path.bar
+    @include opacity(0)
+    @include transition-duration(100ms)
+    &.active
+      @include opacity(0.3)
 
 .band
   @extend %shadow

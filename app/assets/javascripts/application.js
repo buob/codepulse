@@ -15,3 +15,9 @@
 //= require jquery.ui.tooltip
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+  $(document).tooltip({
+    track: true
+  });
+});
