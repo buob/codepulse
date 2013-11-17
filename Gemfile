@@ -18,6 +18,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'github_api'
+gem 'swish'
 gem 'pry'
 gem 'rspec-rails'
 
