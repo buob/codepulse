@@ -1,9 +1,10 @@
 class Repo
-  attr_accessor :name, :private, :languages, :primary_language_color, :owner, :displayable, :total_commits, :total_additions, :total_deletions, :this_week_additions, :this_week_deletions
+  attr_accessor :name, :private, :languages, :primary_language_color, :owner, :displayable, :total_commits, :total_additions, :total_deletions, :this_week_additions, :this_week_deletions, :url
   def initialize(user, repo)
     @name = repo.name
     @private = repo.private
     @owner = repo.owner.login
+    @url = repo.html_url
 
     repo = repo.name
 

@@ -23,7 +23,7 @@
 .content
   .work
     - @pulse.user.repos.each do |repo|
-      .project
+      %a.project{href: if repo.private then nil else repo.url end}
         .background{style: "background-image: url(http://#{repo.name}.jpg.to/l+r+photo)"}
         .overlay{style: "background-color: #{repo.primary_language_color || '#000'};"}
         .shadow
