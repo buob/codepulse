@@ -1,5 +1,5 @@
 class Repo
-  attr_accessor :name, :private, :languages, :primary_language_color, :owner, :displayable, :total_commits, :total_additions, :total_deletions, :this_week_additions, :this_week_deletions, :url
+  attr_accessor :name, :private, :languages, :primary_language_color, :owner, :stats, :displayable, :total_commits, :total_additions, :total_deletions, :this_week_additions, :this_week_deletions, :url
   def initialize(user, repo)
     @name = repo.name
     @private = repo.private
@@ -22,7 +22,15 @@ class Repo
       @total_deletions = 0
       last_week = (Time.now - 14.days).to_i
       now = (Time.now - 7.days).to_i
+
+      past_week = {}
+      9.times do |i|
+        past_week[(Date.today.beginning_of_week(start_date = :saturday) - (i*7).days).strftime("%F")] = 0
+      end
+
       stats.weeks.each do |week|
+        week_date = Time.at(week.w).strftime("%F")
+        past_week[week_date] = week.c unless past_week[week_date].nil?
         @total_additions += week.a
         @total_deletions += week.d
         if last_week < week.w and week.w < now
@@ -30,6 +38,11 @@ class Repo
           @this_week_deletions = week.d
         end
       end
+
+      @stats = []
+      past_week.each {|k,v| @stats << v}
+      @stats.reverse!
+
     else
       @displayable = false
     end
