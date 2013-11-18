@@ -8,15 +8,26 @@ window.Pulse =
    n + (s[(v-20)%10]||s[v]||s[0])
 
   draw: (activity) ->
+    padding = 5
     viewWidth = 2000
     viewHeight = 208
     interval = 16
     middle = viewHeight / 2
     explosionWeight = 4
     negative = true
-    i = interval
+    i = interval + padding
 
-    pulsePath = 'M' + viewWidth + ',' + middle + ' L'
+    endDot = document.createElementNS "http://www.w3.org/2000/svg", "circle"
+    $(endDot).attr(
+      fill: '#000'
+      stroke: 'none'
+      cx: viewWidth - padding
+      cy: middle
+      r: 4
+      class: 'end-dot'
+    ).prependTo('.pulse svg')
+
+    pulsePath = 'M' + (viewWidth - padding) + ',' + middle + ' L'
     for day in activity
       commits = day.commits
       x = (viewWidth - i)
@@ -25,7 +36,7 @@ window.Pulse =
 
       hoverTarget = document.createElementNS "http://www.w3.org/2000/svg", "rect"
       $(hoverTarget).attr(
-        fill: '#000'
+        fill: 'black'
         stroke: 'none'
         width: interval
         height: viewHeight
@@ -88,9 +99,11 @@ window.Pulse =
     ).prependTo('.pulse svg')
 
     setTimeout(->
+      time = 3000
+
       pulse.getBoundingClientRect()
 
-      transition = 'stroke-dashoffset 3s linear'
+      transition = 'stroke-dashoffset ' + time + 'ms linear'
       $(pulse).css
         'transition': transition
         '-webkit-transition': transition
@@ -102,5 +115,7 @@ window.Pulse =
         $('.d-' + $(@).data('date')).each -> $(@).attr('class', $(@).data('classes'))
       )
 
-      return true
+      setTimeout(->
+        $('.pulse').addClass('complete')
+      , time)
     , 0)

@@ -128,12 +128,15 @@ header
   +background-image-retina('grid', 'png')
   svg
     float: right
-    margin-right: 20px
+    margin-right: -10px
   circle, rect, path.bar
     @include opacity(0)
     @include transition-duration(100ms)
     &.active
       @include opacity(0.3)
+  &.complete
+    .end-dot
+      @include opacity(1)
 
 .band
   @extend %shadow

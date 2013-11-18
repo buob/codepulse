@@ -34,19 +34,19 @@ Then(/^I should see the repos listed$/) do
 end
 
 Then(/^I should see a pulse with blips for commit activity$/) do
-  # in our stub, the commits are 1, 2, 1 from last to first
-  # based on viewWidth of 2000, viewHeight of 208, and interval of 16 (pulses.js.coffee)
+  # in our stub, the commits are 1, 2, 1 from last to first based on
+  # viewWidth of 2000, viewHeight of 208, padding of 5, and interval of 16 (pulses.js.coffee)
   path = page.find('.pulse path')['d']
 
-  expect(path).to have_content 'M2000,104'
+  expect(path).to have_content 'M1995,104'
 
-  expect(path).to have_content '1984,'
-  expect(path).to have_content '1968,'
-  expect(path).to have_content '1952,'
+  expect(path).to have_content '1979,'
+  expect(path).to have_content '1963,'
+  expect(path).to have_content '1947,'
 
-  expect(path).not_to have_content '1984,104'
-  expect(path).not_to have_content '1968,104'
-  expect(path).not_to have_content '1952,104'
+  expect(path).not_to have_content '1979,104'
+  expect(path).not_to have_content '1963,104'
+  expect(path).not_to have_content '1947,104'
 end
 
 Then(/^they should have commit activity$/) do
