@@ -14,6 +14,8 @@ OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
 })
 
 Before do
+  load "#{Rails.root}/db/seeds.rb"
+
   User.any_instance.stub_chain(:github, :repos, :list).and_return(
     [
       OpenStruct.new(

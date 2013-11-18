@@ -18,11 +18,11 @@
   .content
     %svg{xmlns:"http://www.w3.org/2000/svg", version:"1.1", width: '2000', height: '208', viewBox: '0 0 2000 208'}
 
-.band.work
+.band.development
   .title Development
 
 .content
-  .work
+  .development
     - @pulse.user.repos.each do |repo|
       %a.project{href: if repo.private then nil else repo.url end}
         .background{style: "background-image: url(http://#{repo.name}.jpg.to/l+r+photo)"}
@@ -53,6 +53,26 @@
           .total-commits
             .number= repo.total_commits
             .sub= "commit".pluralize(repo.total_commits)
+
+- if @pulse.user.shots
+
+  .band.design
+    .title Design
+
+  .content
+    .design
+      - @pulse.user.shots.each do |shot|
+        %a.project{href: shot.short_url, target: '_blank'}
+          = image_tag shot.image_url
+          .overlay
+          .shadow
+          %ul.details
+            %li.icon.icon-eye
+            %li= shot.views_count
+            %li.icon.icon-heart
+            %li= shot.likes_count
+            %li.icon.icon-bubble
+            %li= shot.comments_count
 
 .band.fin fin
 
