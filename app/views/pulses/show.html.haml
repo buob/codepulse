@@ -7,6 +7,8 @@
     .socials
       .inner
         %ul
+          %li{class: 'github'}
+            = link_to '', 'http://github.com/' + @pulse.user.github_user, class: 'icon-github'
           - @pulse.social_accounts.each do |social_account|
             %li{class: social_account.name, style: "background-color: #{social_account.color}"}
               = link_to '', social_account.url + social_account.handle, class: "icon-#{social_account.name}"

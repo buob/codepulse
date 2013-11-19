@@ -1,5 +1,4 @@
 social_profiles = [
-  {name: 'github', url: 'http://github.com/', color: '#333', display_order: 1},
   {name: 'facebook', url: 'http://facebook.com/', color: '#43609c', display_order: 2},
   {name: 'dribbble', url: 'http://dribbble.com/', color: '#cb376e', display_order: 3},
   {name: 'twitter', url: 'http://twitter.com/', color: '#00aeed', display_order: 4},

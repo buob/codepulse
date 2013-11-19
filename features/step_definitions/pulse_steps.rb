@@ -12,11 +12,9 @@ Then(/^I should see the pulse info$/) do
 end
 
 Given(/^the pulse has social profiles connected$/) do
-  github = SocialProfile.create(name: 'github', url: '')
   facebook = SocialProfile.create(name: 'facebook', url: '')
   dribbble = SocialProfile.create(name: 'dribbble', url: '')
   twitter = SocialProfile.create(name: 'twitter', url: '')
-  @current_user.social_accounts.create(social_profile: github, handle: 'samwise')
   @pulse.social_accounts.create(social_profile: facebook, handle: 'gamgee')
   @pulse.social_accounts.create(social_profile: dribbble, handle: 'gamgee')
   @pulse.social_accounts.create(social_profile: twitter, handle: 'gamgee')
