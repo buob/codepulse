@@ -1,22 +1,46 @@
-%h1 Editing pulse
+.content
 
-= form_for @pulse do |f|
-  - if @pulse.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@pulse.errors.count, "error")} prohibited this pulse from being saved:"
-      %ul
-        - @pulse.errors.full_messages.each do |msg|
-          %li= msg
+  %h1 Edit Your Pulse
 
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :url
-    = f.text_field :url
-  .actions
-    = f.submit 'Save'
+  = form_for @pulse do |f|
+    - if @pulse.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@pulse.errors.count, "error")} prohibited this pulse from being saved:"
+        %ul
+          - @pulse.errors.full_messages.each do |msg|
+            %li= msg
 
-= link_to 'Show', @pulse
-\|
-= link_to 'Back', pulses_path
+    %h2 Pulse
+    .field-group
+      .field.fifty
+        = f.label :username, 'Username'
+        = f.text_field :username
+      .field.fifty
+        = f.label :tagline, 'Job Title'
+        = f.text_field :tagline
+      .field.fifty
+        = f.label :dev_title, 'Development Title'
+        = f.text_field :dev_title
+      .field.fifty
+        = f.label :design_title, 'Design Title'
+        = f.text_field :design_title
+
+    %h2 Social
+    .field-group
+      .field.fifty
+        = f.label :twitter, '<i class="icon-twitter"></i>'
+        = f.text_field :twitter
+      .field.fifty
+        = f.label :facebook, '<i class="icon-facebook"></i>'
+        = f.text_field :facebook
+      .field.fifty
+        = f.label :linkedin, '<i class="icon-linkedin"></i>'
+        = f.text_field :linkedin
+      .field.fifty
+        = f.label :dribbble, '<i class="icon-dribbble"></i>'
+        = f.text_field :dribbble
+
+    .actions
+      = link_to 'Show', @pulse
+      = f.submit 'Save'
+

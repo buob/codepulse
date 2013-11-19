@@ -19,7 +19,6 @@ class User < ActiveRecord::Base
                     uid: auth.uid,
                     email: auth.info.email,
                     github_user: auth.info.nickname,
-                    username: auth.info.nickname,
                     password: Devise.friendly_token[0,20],
                     auth_token: auth.credentials.try(:token)
                   )
