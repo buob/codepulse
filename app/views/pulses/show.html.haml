@@ -121,7 +121,9 @@
             %li.icon.icon-bubble
             %li= shot.comments_count
 
-.band.fin fin
+.band.fin
+  fin
+  .copyright= "All content &copy; #{Time.new.year} CodePulse, All Rights Reserved".html_safe
 
 - content_for :javascript do
   - javascript_tag do
