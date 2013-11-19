@@ -25,7 +25,7 @@ class Repo
 
       past_week = {}
       9.times do |i|
-        past_week[(Date.today.beginning_of_week(start_date = :saturday) - (i*7).days).strftime("%F")] = 0
+        past_week[(Date.today.beginning_of_week(start_date = ENV["WEEK_START_DAY"].parameterize.to_sym) - (i*7).days).strftime("%F")] = 0
       end
 
       stats.weeks.each do |week|
