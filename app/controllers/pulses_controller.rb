@@ -11,6 +11,10 @@ class PulsesController < ApplicationController
   end
 
   def update
+    params[:pulse][:social_accounts_attributes].each do |profile_name, value|
+      profile = SocialProfile.find_by(name: profile_name)
+      @pulse.social_accounts.find_or_create_by(social_profile: profile).update_attributes!(handle: value[:handle])
+    end
     respond_to do |format|
       if @pulse.update(pulse_params)
         format.html { redirect_to @pulse, notice: 'Pulse was successfully updated.' }
@@ -28,6 +32,6 @@ class PulsesController < ApplicationController
     end
 
     def pulse_params
-      params.require(:pulse).permit(:url, :tagline)
+      params.require(:pulse).permit(:tagline, :username, :dev_title, :design_title)
     end
 end
