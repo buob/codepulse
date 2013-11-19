@@ -50,7 +50,8 @@ Then(/^I should see a pulse with blips for commit activity$/) do
 end
 
 Then(/^they should have commit activity$/) do
+  # one time to scroll it, one time to hover... =|
+  2.times { page.find('a.project:first-child').click }
   # in our stub, the project had 49 commits
-  page.find('.project:first-child').click
   expect(page).to have_content '49', visible: false
 end
