@@ -42,6 +42,13 @@
 a
   text-decoration: none
 
+.copyright
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 10px
+  font-size: 13px
+
 .edit
   position: fixed
   bottom: 0
@@ -82,7 +89,6 @@ header
     display: table-row
   li
     display: table-cell
-    width: 25%
   a
     text:
       align: center
@@ -90,14 +96,11 @@ header
     display: block
     padding: 20px
     color: white
+    @include box-shadow(inset 0 0 30px 10px rgba(0,0,0,0))
+    &:hover
+      @include box-shadow(inset 0 0 30px 10px rgba(0,0,0,0.1))
   .github
     background-color: #333333
-  .facebook
-    background-color: #43609c
-  .twitter
-    background-color: #00aeed
-  .dribbble
-    background-color: #cb376e
 
 .name, .tagline
   display: inline

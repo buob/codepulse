@@ -5,8 +5,7 @@ Feature: Signup and Signin
 
   Scenario: User Signs up
     When I sign up
-    Then I should be let in
-    And I should be able to edit my new pulse
+    Then I should be able to edit my new pulse
 
   Scenario: Visitor Tries to Hack
     Given I'm a visitor

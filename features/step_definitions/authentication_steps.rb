@@ -3,12 +3,8 @@ When(/^I sign up$/) do
   click_on 'Sign in with GitHub'
 end
 
-Then(/^I should be let in$/) do
-  expect(page).to have_content 'Successfully authenticated from GitHub account'
-end
-
 Then(/^I should be able to edit my new pulse$/) do
-  expect(page).to have_content 'Editing pulse'
+  expect(page).to have_content 'Edit Your Pulse'
 end
 
 When(/^I sign in$/) do

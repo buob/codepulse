@@ -1,4 +1,4 @@
-%p#notice= notice
+/ %p#notice= notice
 - if current_user === @pulse.user
   = link_to '', edit_pulse_path(@pulse), class: 'icon-pencil edit'
 
@@ -7,8 +7,10 @@
     .socials
       .inner
         %ul
+          %li{class: 'github'}
+            = link_to '', 'http://github.com/' + @pulse.user.github_user, class: 'icon-github'
           - @pulse.social_accounts.each do |social_account|
-            %li{class: social_account.name}
+            %li{class: social_account.name, style: "background-color: #{social_account.color}"}
               = link_to '', social_account.url + social_account.handle, class: "icon-#{social_account.name}"
   .title
     %h1.name jakebuob
@@ -121,7 +123,9 @@
             %li.icon.icon-bubble
             %li= shot.comments_count
 
-.band.fin fin
+.band.fin
+  fin
+  .copyright= "All content &copy; #{Time.new.year} CodePulse, All Rights Reserved".html_safe
 
 - content_for :javascript do
   - javascript_tag do

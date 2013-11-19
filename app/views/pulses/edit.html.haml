@@ -1,7 +1,42 @@
-%h1 Editing pulse
+.edit-wrapper
 
-= render 'form'
+  %h1 Edit Your Pulse
 
-= link_to 'Show', @pulse
-\|
-= link_to 'Back', pulses_path
+  = form_for @pulse do |f|
+    - if @pulse.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@pulse.errors.count, "error")} prohibited this pulse from being saved:"
+        %ul
+          - @pulse.errors.full_messages.each do |msg|
+            %li= msg
+
+    .band Pulse
+    .content.skinny
+      .field-group.basic-info
+        .field.fifty
+          = f.label :username, 'Username'
+          = f.text_field :username
+        .field.fifty
+          = f.label :tagline, 'Job Title'
+          = f.text_field :tagline
+        .field.fifty
+          = f.label :dev_title, 'Development Title'
+          = f.text_field :dev_title
+        .field.fifty
+          = f.label :design_title, 'Design Title'
+          = f.text_field :design_title
+
+    .band Socials
+    .content.skinny
+      .field-group.social-info
+        - SocialProfile.all.each_with_index do |profile, i|
+          - social_account = @pulse.social_accounts.where(social_profile: profile).first
+          - if profile.name != 'github'
+            .field.fifty
+              %i{class: "icon-#{profile.name}", style: 'color:' + profile.color}
+              = text_field_tag "pulse[social_accounts_attributes][#{profile.name}][handle]", social_account.try(:handle), id: "handle-#{profile.name}"
+
+      .actions.field-group
+        = link_to 'Show', @pulse, class: 'fifty'
+        = f.submit 'Save', class: 'fifty'
+
