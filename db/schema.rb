@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119044114) do
+ActiveRecord::Schema.define(version: 20131119045947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,12 @@ ActiveRecord::Schema.define(version: 20131119044114) do
   create_table "social_accounts", force: true do |t|
     t.string   "handle"
     t.integer  "social_profile_id"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pulse_id"
   end
 
   add_index "social_accounts", ["social_profile_id"], name: "index_social_accounts_on_social_profile_id", using: :btree
-  add_index "social_accounts", ["user_id"], name: "index_social_accounts_on_user_id", using: :btree
 
   create_table "social_profiles", force: true do |t|
     t.string   "url"

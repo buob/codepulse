@@ -1,4 +1,4 @@
 class Pulse < ActiveRecord::Base
   belongs_to :user
-  delegate :social_accounts, to: :user
+  has_many :social_accounts
 end

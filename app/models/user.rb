@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
 
   def shots
     dribbble = SocialProfile.find_by(name: 'dribbble')
-    dribbble_account = dribbble.social_accounts.find_by(user_id: self.id)
+    dribbble_account = dribbble.social_accounts.find_by(pulse_id: self.id)
     if dribbble_account
       handle = dribbble_account.handle
       player = Dribbble::Player.find(handle)

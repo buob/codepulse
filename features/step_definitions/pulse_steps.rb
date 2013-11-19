@@ -17,9 +17,9 @@ Given(/^the pulse has social profiles connected$/) do
   dribbble = SocialProfile.create(name: 'dribbble', url: '')
   twitter = SocialProfile.create(name: 'twitter', url: '')
   @current_user.social_accounts.create(social_profile: github, handle: 'samwise')
-  @current_user.social_accounts.create(social_profile: facebook, handle: 'gamgee')
-  @current_user.social_accounts.create(social_profile: dribbble, handle: 'gamgee')
-  @current_user.social_accounts.create(social_profile: twitter, handle: 'gamgee')
+  @pulse.social_accounts.create(social_profile: facebook, handle: 'gamgee')
+  @pulse.social_accounts.create(social_profile: dribbble, handle: 'gamgee')
+  @pulse.social_accounts.create(social_profile: twitter, handle: 'gamgee')
 end
 
 Then(/^I should see the social profiles$/) do
