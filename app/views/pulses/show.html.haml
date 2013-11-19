@@ -13,7 +13,7 @@
             %li{class: social_account.name, style: "background-color: #{social_account.color}"}
               = link_to '', social_account.url + social_account.handle, class: "icon-#{social_account.name}"
   .title
-    %h1.name jakebuob
+    %h1.name= @pulse.username
     %h2.tagline= @pulse.tagline
 
 .pulse
@@ -21,7 +21,7 @@
     %svg{xmlns:"http://www.w3.org/2000/svg", version:"1.1", width: '2000', height: '208', viewBox: '0 0 2000 208'}
 
 .band.development
-  .title Development
+  .title= @pulse.dev_title
 
 .content
   .development
@@ -106,7 +106,7 @@
 - if @pulse.user.shots
 
   .band.design
-    .title Design
+    .title= @pulse.design_title
 
   .content
     .design
