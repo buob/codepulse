@@ -96,6 +96,9 @@ header
     display: block
     padding: 20px
     color: white
+    @include box-shadow(inset 0 0 30px 10px rgba(0,0,0,0))
+    &:hover
+      @include box-shadow(inset 0 0 30px 10px rgba(0,0,0,0.1))
   .github
     background-color: #333333
 
