@@ -1,7 +1,7 @@
 *
   position: relative
   +box-sizing(border-box)
-  +transition(all 250ms ease-in-out)
+  +transition(all 200ms ease-in-out)
 
 %shadow-after
   &:after
@@ -128,12 +128,15 @@ header
   +background-image-retina('grid', 'png')
   svg
     float: right
-    margin-right: 20px
+    margin-right: -10px
   circle, rect, path.bar
     @include opacity(0)
     @include transition-duration(100ms)
     &.active
       @include opacity(0.3)
+  &.complete
+    .end-dot
+      @include opacity(1)
 
 .band
   @extend %shadow
@@ -142,17 +145,15 @@ header
   padding: 40px 0
   font-size: 29px
 
-.work
-  @extend .group
+.content
+  .development, .design
+    @extend .group
 
 .project
   width: 427px
-  height: 250px
-  padding: 30px
-  overflow: hidden
   color: white
-  text-align: right
   margin-bottom: 45px
+  overflow: hidden
   &:nth-child(odd)
     float: left
   &:nth-child(even)
@@ -163,6 +164,7 @@ header
     right: 0
     bottom: 0
     left: 0
+  // Development
   .background
     position: absolute
     top: -20px
@@ -171,8 +173,6 @@ header
     left: -20px
     -webkit-filter: blur(5px) grayscale(1)
     +background-size(cover)
-  .overlay
-    +opacity(0.8)
   .shadow
     +box-shadow(inset 0 0 0 10px rgba(255, 255, 255, 0.2))
   .graph
@@ -182,12 +182,13 @@ header
     bottom: 18px
     left: 18px
     overflow: hidden
-    img
+    svg
       position: absolute
       bottom: -1%
       left: -1%
       right: -1%
       width: 102%
+      +opacity(0.8)
       +transform(scale(1))
   .title
     font:
@@ -203,12 +204,42 @@ header
         content: ' •'
       &:last-child:after
         content: ''
+  // Design
+  .details
+    position: absolute
+    bottom: 18px
+    right: 21px
+    +transform(translate3d(0, 50px, 0))
+    li
+      display: inline
+      margin-left: 1px
+      &.icon
+        margin-left: 3px
+  .development &
+    height: 250px
+    padding: 30px
+    text-align: right
+    .overlay
+      +opacity(0.8)
+  .design &
+    img
+      display: block
+      max-width: 100%
+    .overlay
+      background-color: #000
+      +opacity(0)
+    &:hover
+      img
+        -webkit-filter: blur(2px)
+        +transform(scale(1.1), translate3d(-5%, -5%, 0))
+      .overlay
+        +opacity(0.15)
   &:hover
-    .total-commits, .activity ul
+    .total-commits, .activity ul, .details
       +transform(translate3d(0, 0, 0))
       +opacity(1)
-    .graph img
-      +opacity(0.35)
+    .graph svg
+      -webkit-filter: blur(4px)
       +transform(scale(0.98))
 
 .activity

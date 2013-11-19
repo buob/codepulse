@@ -15,19 +15,67 @@
     %h2.tagline= @pulse.tagline
 
 .pulse
-  %svg{xmlns:"http://www.w3.org/2000/svg", version:"1.1", width: '2000', height: '208', viewBox: '0 0 2000 208'}
+  .content
+    %svg{xmlns:"http://www.w3.org/2000/svg", version:"1.1", width: '2000', height: '208', viewBox: '0 0 2000 208'}
 
-.band.job
-  .title Developer at MojoTech
+.band.development
+  .title Development
 
 .content
-  .work
+  .development
     - @pulse.user.repos.each do |repo|
-      .project
+      %a.project{href: if repo.private then nil else repo.url end}
         .background{style: "background-image: url(http://#{repo.name}.jpg.to/l+r+photo)"}
         .overlay{style: "background-color: #{repo.primary_language_color || '#000'};"}
         .shadow
-        .graph= image_tag 'graph1.png'
+        .graph
+          - height = 214
+          - width = 391
+          - radius = 7
+          - explosion = 4
+          - dot_number = repo.stats.size
+          - base = 10
+          - grid_large = width.to_f / (dot_number - 1).to_f
+          - grid = grid_large.to_f / 4
+          %svg{xmlns:"http://www.w3.org/2000/svg", version:"1.1", width: width, height: height, viewBox: "0 0 #{width} #{height}"}
+            - repo.stats.each_with_index do |commits, i|
+              - x = (grid_large * i).to_i
+              - y = height - commits * explosion - base
+
+              %circle{cx: x, cy: y, r: radius, fill: 'none', stroke: 'white', 'stroke-width' => '4'}
+              %path{d: 'M' + x.to_s + ',' + height.to_s + ' L' + x.to_s + ',' + ( y + radius ).to_s, stroke: 'white', fill: 'none', 'stroke-width' => '2'}
+
+              - if repo.stats[i + 1]
+
+                - x_next = (grid_large * (i + 1)).to_i
+                - y_next = height - repo.stats[i + 1] * explosion - base
+                - x_diff = x_next - x
+                - y_diff = y_next - y
+
+                - if y_diff == 0
+                  - start_x = x + radius
+                  - start_y = y
+                  - end_x = x_next - radius
+                  - end_y = y
+                - else
+                  - angle = Math.atan((x_diff/y_diff.abs).to_f)
+                  - start_x = Math.sin(angle) * radius + x
+                  - end_x = x_next - Math.sin(angle) * radius
+
+                  - if y_diff > 0
+                    - start_y = y + Math.cos(angle) * radius
+                    - end_y = y_next - Math.cos(angle) * radius
+                  - else
+                    - start_y = y - Math.cos(angle) * radius
+                    - end_y = y_next + Math.cos(angle) * radius
+
+                - 3.times do |j|
+                  - step_x = (x + (x_diff) * (j+1)/4).to_s
+                  - step_y = (y + (y_diff) * (j+1)/4).to_s
+
+                  %path{d: 'M' + step_x + ',' + height.to_s + ' L' + step_x + ',' + step_y.to_s, stroke: 'white', fill: 'none', 'stroke-width' => '2'}
+
+                %path{d: 'M' + start_x.to_i.to_s + ',' + start_y.to_i.to_s + ' L' + end_x.to_i.to_s + ',' + end_y.to_i.to_s, stroke: 'white', fill: 'none', 'stroke-width' => '4'}
         - unless repo.private
           %h1.title= repo.name.capitalize
         %ul.languages
@@ -52,6 +100,26 @@
           .total-commits
             .number= repo.total_commits
             .sub= "commit".pluralize(repo.total_commits)
+
+- if @pulse.user.shots
+
+  .band.design
+    .title Design
+
+  .content
+    .design
+      - @pulse.user.shots.each do |shot|
+        %a.project{href: shot.short_url, target: '_blank'}
+          = image_tag shot.image_url
+          .overlay
+          .shadow
+          %ul.details
+            %li.icon.icon-eye
+            %li= shot.views_count
+            %li.icon.icon-heart
+            %li= shot.likes_count
+            %li.icon.icon-bubble
+            %li= shot.comments_count
 
 .band.fin fin
 

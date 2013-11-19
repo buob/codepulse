@@ -57,10 +57,26 @@ class User < ActiveRecord::Base
     activity_array.sort { |x, y| y[:date] <=> x[:date] }
   end
 
+  def shots
+    dribbble = SocialProfile.find_by(name: 'dribbble')
+    dribbble_account = dribbble.social_accounts.find_by(user_id: self.id)
+    if dribbble_account
+      handle = dribbble_account.handle
+      player = Dribbble::Player.find(handle)
+      player.shots.sort do |x,y|
+        if y.likes_count != x.likes_count
+          y.likes_count <=> x.likes_count
+        else
+          y.created_at <=> x.created_at
+        end
+      end
+    end
+  end
+
   def repos
     if @repos.nil?
       @repos = []
-      github.repos.list.each do |repo|
+      github.repos.list(per_page: 100).each do |repo|
         repo = github.repos.get(repo.owner.login, repo.name).source if repo.fork
         repo = Repo.new(self, repo)
         @repos << repo if repo.displayable
