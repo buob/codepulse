@@ -8,7 +8,7 @@
       .inner
         %ul
           - @pulse.social_accounts.each do |social_account|
-            %li{class: social_account.name}
+            %li{class: social_account.name, style: "background-color: #{social_account.color}"}
               = link_to '', social_account.url + social_account.handle, class: "icon-#{social_account.name}"
   .title
     %h1.name jakebuob
