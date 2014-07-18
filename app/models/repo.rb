@@ -33,7 +33,7 @@ class Repo
         past_week[week_date] = week.c unless past_week[week_date].nil?
         @total_additions += week.a
         @total_deletions += week.d
-        if last_week < week.w and week.w < now
+        if last_week < week.w && week.w < now
           @this_week_additions = week.a
           @this_week_deletions = week.d
         end
