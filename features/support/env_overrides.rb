@@ -20,29 +20,29 @@ Before do
     [
       OpenStruct.new(
         fork: false,
-        full_name: "buob/codepulse",
-        language: "Ruby",
-        name: "codepulse",
-        owner: OpenStruct.new(login: "buob"),
+        full_name: 'buob/codepulse',
+        language: 'Ruby',
+        name: 'codepulse',
+        owner: OpenStruct.new(login: 'buob'),
         private: false,
       ),
       OpenStruct.new(
         fork: false,
-        full_name: "mojotech/something_private",
-        language: "CoffeesScript",
-        name: "something_private",
-        owner: OpenStruct.new(login: "mojotech"),
+        full_name: 'mojotech/something_private',
+        language: 'CoffeesScript',
+        name: 'something_private',
+        owner: OpenStruct.new(login: 'mojotech'),
         private: true,
       )
     ]
   )
 
-  User.any_instance.stub_chain(:github, :repos, :languages).and_return({"Ruby" => 200, "CoffeesScript" => 100})
+  User.any_instance.stub_chain(:github, :repos, :languages).and_return({'Ruby' => 200, 'CoffeesScript' => 100})
 
   User.any_instance.stub_chain(:github, :repos, :stats, :contributors, :body).and_return(
     [
       OpenStruct.new(
-        author: OpenStruct.new(login: "buob"),
+        author: OpenStruct.new(login: 'buob'),
         total: 49,
         weeks: [
           OpenStruct.new(a: 711, c: 10, d: 87, w: 1379203200),

@@ -234,7 +234,7 @@ Devise.setup do |config|
 
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 
-  config.omniauth :github, ENV["GITHUB_CLIENT_ID"], ENV["GITHUB_CLIENT_SECRET"], :scope => 'user,repo,notifications,gist'
+  config.omniauth :github, ENV['GITHUB_CLIENT_ID'], ENV['GITHUB_CLIENT_SECRET'], :scope => 'user,repo,notifications,gist'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

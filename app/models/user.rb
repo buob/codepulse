@@ -87,8 +87,8 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.github_data"] && session["devise.github_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+      if data = session['devise.github_data'] && session['devise.github_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
       end
     end
   end
