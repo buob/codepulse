@@ -6,12 +6,12 @@ Warden.test_mode!
 OmniAuth.config.test_mode = true
 
 OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
-  provider: 'github',
-  uid: '123545',
-  auth_token: '23409sdflk234',
-  info: { email: 'frodo@bagend.me' },
-  extra: { raw_info: { name: 'Frodo Baggins'} },
-})
+                                                              provider: 'github',
+                                                              uid: '123545',
+                                                              auth_token: '23409sdflk234',
+                                                              info: { email: 'frodo@bagend.me' },
+                                                              extra: { raw_info: { name: 'Frodo Baggins'} },
+                                                            })
 
 Before do
   load "#{Rails.root}/db/seeds.rb"
