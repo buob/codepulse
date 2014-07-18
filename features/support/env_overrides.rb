@@ -45,15 +45,15 @@ Before do
         author: OpenStruct.new(login: 'buob'),
         total: 49,
         weeks: [
-          OpenStruct.new(a: 711, c: 10, d: 87, w: 1379203200),
-          OpenStruct.new(a: 309, c: 11, d: 19, w: 1379808000),
-          OpenStruct.new(a: 128, c: 8, d: 22, w: 1380412800),
-          OpenStruct.new(a: 41, c: 4, d: 42, w: 1381017600),
-          OpenStruct.new(a: 0, c: 0, d: 0, w: 1381622400),
-          OpenStruct.new(a: 0, c: 0, d: 0, w: 1382227200),
-          OpenStruct.new(a: 2202, c: 8, d: 107, w: 1382832000),
-          OpenStruct.new(a: 306, c: 8, d: 91, w: 1383436800),
-          OpenStruct.new(a: 0, c: 0, d: 0, w: 1384041600),
+          OpenStruct.new(a: 711, c: 10, d: 87, w: 1_379_203_200),
+          OpenStruct.new(a: 309, c: 11, d: 19, w: 1_379_808_000),
+          OpenStruct.new(a: 128, c: 8, d: 22, w: 1_380_412_800),
+          OpenStruct.new(a: 41, c: 4, d: 42, w: 1_381_017_600),
+          OpenStruct.new(a: 0, c: 0, d: 0, w: 1_381_622_400),
+          OpenStruct.new(a: 0, c: 0, d: 0, w: 1_382_227_200),
+          OpenStruct.new(a: 2202, c: 8, d: 107, w: 1_382_832_000),
+          OpenStruct.new(a: 306, c: 8, d: 91, w: 1_383_436_800),
+          OpenStruct.new(a: 0, c: 0, d: 0, w: 1_384_041_600),
         ]
       )
     ]
