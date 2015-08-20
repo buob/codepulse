@@ -10,9 +10,6 @@ class Repo
 
     @languages = user.github.repos.languages(owner,repo).keys
     @primary_language_color = language_colors[@languages.first]
-    stats = user.github.repos.stats.contributors(owner,repo).body.keep_if do |contributor|
-      contributor.author.login == user.github_user
-    end
 
     if stats.length > 0
       stats = stats[0]
@@ -49,6 +46,14 @@ class Repo
   end
 
   private
+
+  def stats
+    Rails.cache.fetch("#{cache_key}/stats") do
+      user.github.repos.stats.contributors(owner,repo).body.keep_if do |contributor|
+        contributor.author.login == user.github_user
+      end
+    end
+  end
 
   def language_colors
     {
